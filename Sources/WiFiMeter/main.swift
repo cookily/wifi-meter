@@ -403,6 +403,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         item.menu = menu
         updateTitle()
 
+        // 隐藏参数：启动后自动展开菜单（用于截取效果图）
+        if args.contains("--demo-menu") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+                self?.statusItem?.button?.performClick(nil)
+            }
+        }
+
         Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
             self?.monitor.poll()
             self?.updateTitle()

@@ -10,13 +10,30 @@ macOS 菜单栏 Wi-Fi 流量统计工具（Swift / AppKit，原生实现，无�
 - **按网络统计**：每个 Wi-Fi 的累计用量和最近 14 天走势。
 - **命令行查询**：`WiFiMeter --stats` 直接在终端看统计表。
 
+## 效果图
+
+菜单栏常驻显示当前网络今日用量：
+
+![菜单栏](docs/screenshot-menubar.png)
+
+点开即看本次连接与各维度统计：
+
+![展开菜单](docs/screenshot-menu.png)
+
+## 下载安装
+
+到 [**Releases**](https://github.com/cookily/wifi-meter/releases/latest) 下载 `WiFiMeter-x.y.z.zip`，解压后把 **WiFiMeter.app** 拖入「应用程序」再打开：
+
+- 首次打开若提示"无法验证开发者"：**右键 → 打开**，或执行 `xattr -cr /Applications/WiFiMeter.app`
+- 需要 macOS 13+；建议在菜单里勾选「开机自启」
+
 ## 构建
 
 要求 macOS 13+ 和 Xcode Command Line Tools（`xcode-select --install`）。
 
 ```bash
 ./scripts/make-app.sh          # swift build -c release 并打包为 build/WiFiMeter.app
-open build/WiFiMeter.app       # 运行；建议拷贝到 /Applications 再开机自启
+open build/WiFiMeter.app       # 运行；建议拷贝到 /Applications 后再开机自启
 ```
 
 调试/查看数据也可以不用界面：
@@ -24,6 +41,7 @@ open build/WiFiMeter.app       # 运行；建议拷贝到 /Applications 再开�
 ```bash
 swift run WiFiMeter --stats    # 终端打印统计
 swift run WiFiMeter --probe    # 检查 SSID/计数器读取情况
+swift run WiFiMeter --demo-menu  # 启动后自动展开菜单（截效果图用）
 ```
 
 ## 首次使用
